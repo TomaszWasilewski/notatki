@@ -455,7 +455,28 @@ def odliczanie(n):
 odliczanie(2)      # >>> 2 1 koniec
 odliczanie(10)     # >>> 10 9 8 7 6 5 4 3 2 1 koniec
 
------------------------------------- RANDOM MODULE ------------------------------------
+# --------------------------------- BUILT IN FUNCTIONS --------------------------------
+'''
+The map() function executes a specified function for each item in an iterable.
+The item is sent to the function as a parameter.
+
+map(function, iterables) 
+'''
+def myfunc_1(n):
+  return len(n) + 100
+
+x = map(myfunc_1, ('metallica', 'pearl_jam', 'dire_straits'))
+print(x)        # >>> <map object at 0x7f3a473acc10>
+print(list(x))  # >>> [109, 109, 112]
+
+def myfunc_2(a, b):
+  return a % b
+
+x = map(myfunc_2, (7, 17, 27), (3, 13, 23))
+print(x)         # >>> <map object at 0x7f3a473c0df0>
+print(list(x))   # >>> [1, 4, 4]
+
+# ------------------------------------ RANDOM MODULE ------------------------------------
 
 import random
 
