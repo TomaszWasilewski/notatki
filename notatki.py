@@ -11,6 +11,9 @@ pow(4,3)  # >>> 4 do potęgi 3 (64)
 44 % 3
 # >>> 2  # 44-2=42 -> 42/3=14 -> 14*3+2 = 44
 
+# floor division - //
+47 / 6     # >>> 7.833333333333333
+47 // 6    # >>> 7 
 
 ------------------------------------ STRING ------------------------------------
 
@@ -20,6 +23,12 @@ len(imie)    'agata'.index('a')    imie[5]    imie.replace('M','T')  'xaxaxa'.re
 
 'To jest moje zdanie '.replace(' ', '!!!', 1)  # param 'count' - jest kilka spacji, chcemy zrobić 'replace' na 1-wszej
 >>> 'To!!!jest moje zdanie '
+
+'Jana III'.find('III')
+# >>> 5       - zwraca indeks na którym szukany napis się zaczyna
+
+'Jana'.find('III')
+# >>> -1      - jeżeli nie znajdzie szukanego napisu - zwróci -1 !!! ; ważne zastosowanie do kostruowania if-ów
 
 
 imie += ' Nowak'        imie * 5                               'usa71Usa4uSAufhusa'.count('usa')
@@ -132,6 +141,10 @@ l2 = [x.strip() for x in l2]
 print([x for x in l1 if x in l2])        # >>> ['32', '43', '65', '34', '99', '55']
 print(len([x for x in l1 if x in l2]))   # >>> 6
 
+# ---    Snippet_2    ---
+>>> {chr(letter): 0 for letter in range(ord('a'), ord('z') + 1)}
+{'a': 0, 'b': 0, 'c': 0, 'd': 0, 'e': 0, ..., 'x': 0, 'y': 0, 'z': 0}
+
 -------------------------------- LIST, TUPLE, SET --------------------------------
 
 [1]*8    # >>> [1, 1, 1, 1, 1, 1, 1, 1]
@@ -230,6 +243,11 @@ lista.extend(range(20, 30))
 lista
 # >>> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
 
+# ------------- SNIPPET 2 ------------------
+# Split string into 'n' equal parts
+>>> s = 'SOSSOSSOSSOS'   # len(s) -> 12
+>>> [s[idx: idx + 3] for idx in range(0, len(s), 3)]
+['SOS', 'SOS', 'SOS', 'SOS']
 
 ------------------------------------- DICT -------------------------------------
 
@@ -926,6 +944,14 @@ re.sub(r'\d{2}-\d{3}', 'kod-pocztowy', 'ww2-5ii33-30oo-rr73-110pp 88-900waw7-772
 # >>> ww2-5ii33-30oo-rrkod-pocztowypp kod-pocztowywaw7-772yy
 re.sub(r'\d{2}-\d{3}', 'kod-pocztowy', 'ww33-33oo2-2')
 # >>> ww33-33oo2-2
+
+# (...)(...) , \1\2 
+# wyrażenia w nawiasach stanowią grupy. poprzez "\1\2" odwołuję się do tych grup; pomiędzy grupami dojdzie spacja !!!
+re.sub(r'(UL.)(\w)', r'\1 \2', 'UL.Zygmunta')   # po 'UL.' nie ma spacji
+# >>> 'UL. Zygmunta'    (po 'UL.' jest spacja, bo dodałem spację między "\1" i "\2")
+
+# TODO
+# (?P<name>...) - nadawanie nazw grupom
 
 # "  <string>(?=...)  " poszuka stringa PO KTÓRYM NASTĘPUJE WYRAŻENIE "..."
 # ten pattern nazywamy "lookahead assertion"
