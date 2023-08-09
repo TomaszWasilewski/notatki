@@ -331,6 +331,17 @@ sorted_time_dict = {k: time_dict[k] for k in sorted_keys} #  --->  Dictionary Co
 # https://www.geeksforgeeks.org/python-sort-python-dictionaries-by-key-or-value/
 # pozostałe przykłady sortowania
 
+----- SNIPPET 4 -----
+bird_sightings = {
+        1: 1,
+        2: 6,
+        3: 6,
+        4: 4,
+        5: 2
+}
+num_of_most_sightings = max(bird_sightings.values())  # zwroci '6'
+return [key for key, value in bird_sightings.items() if value == num_of_most_sightings] # klucze z wartosciami '6'
+
 ----------------------------------- FUNKCJE ------------------------------------
 
 def dzialania(x,y):
@@ -494,6 +505,34 @@ x = map(myfunc_2, (7, 17, 27), (3, 13, 23))
 print(x)         # >>> <map object at 0x7f3a473c0df0>
 print(list(x))   # >>> [1, 4, 4]
 
+--------- SNIPPET max() -----------
+'''
+max(iterable, *, key=None)
+'''
+models = {'logistic_regression': 0.95, 'knn': 0.8, 'naive': 0.85, 'svc': 0.85}
+best = max(models, key=lambda k: models.get(k))
+best
+# 'logistic_regression'
+
+# ------------------------------------ WALRUS OPERATOR ----------------------------------
+# Walrus operator jednocześnie tworzy zmienną i jej używa
+
+(t:=[1, -1, 3, 5, -8])            # jednocześnie stworzyliśmy zmienną i ją wywołaliśmy
+# [1, -1, 3, 5, -8]
+
+(t:=[1, -1, 3, 5, -8]).append(7)  # jednocześnie stworzyliśmy zmienną i użyliśmy na niej metody append()
+# >>> t
+# [1, -1, 3, 5, -8, 7]
+
+(x:=[8, 2, 6, -2]).extend([5, 9, 1, 2])
+# >>> x
+# [8, 2, 6, -2, 5, 9, 1, 2] 
+
+(y:='testowanie').split('t')
+# ['', 'es', 'owanie']
+# >>> y
+# 'testowanie'
+
 # ------------------------------------ RANDOM MODULE ------------------------------------
 
 import random
@@ -621,6 +660,24 @@ a = combinations(letters, 3)
 a = combinations(letters, 3)
 [' '.join(i) for i in a]
 # >>> ['G e E', 'G e K', 'G e S', 'G E K', 'G E S', 'G K S', 'e E K', 'e E S', 'e K S', 'E K S']
+
+
+--------------- SNIPPET 1 --------------------------
+# funkcja (bez dodatkowych bibliotek) do tworzenia kombinacji trojek 
+
+def give_combinations_of_three(values):
+    triplets = []
+    for idx_1, val_1 in enumerate(values[: -2]):
+        for idx_2, val_2 in enumerate(values[idx_1 + 1: -1]):
+            for val_3 in values[idx_1 + idx_2 + 2:]:
+                triplets.append((val_1, val_2, val_3))
+
+    return triplets
+
+>>> print(give_combinations_of_three("GeEKS"))
+[('G', 'e', 'E'), ('G', 'e', 'K'), ('G', 'e', 'S'), ('G', 'E', 'K'), ('G', 'E', 'S'), ('G', 'K', 'S'), ('e', 'E', 'K'),
+('e', 'E', 'S'), ('e', 'K', 'S'), ('E', 'K', 'S')]
+
 
 ----------------------------------- STATISTICS MODULE -----------------------------------
 
